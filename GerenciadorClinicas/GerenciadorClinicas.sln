@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36414.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClinicManagement.API", "GerenciadorClinicas.API\ClinicManagement.API.csproj", "{58A5CB7C-70DF-476A-B709-EAE4195B8D55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClinicManagement.Infrastructure", "ClinicManagement.Infrastructure\ClinicManagement.Infrastructure.csproj", "{EFD07A92-83F2-4828-8891-3C813DE0B6DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClinicManagement.Core", "ClinicManagement.Core\ClinicManagement.Core.csproj", "{8E03CAF0-F65E-4986-9327-C32732217FD8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClinicManagement.Application", "ClinicManagement.Application\ClinicManagement.Application.csproj", "{724BAFE6-3F52-49F7-81BF-BC6755C0EFEC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{8E4E2596-8272-4B18-A720-1FBA75D65544}"
+	ProjectSection(SolutionItems) = preProject
+		deployapi.yml = deployapi.yml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{58A5CB7C-70DF-476A-B709-EAE4195B8D55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58A5CB7C-70DF-476A-B709-EAE4195B8D55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58A5CB7C-70DF-476A-B709-EAE4195B8D55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58A5CB7C-70DF-476A-B709-EAE4195B8D55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFD07A92-83F2-4828-8891-3C813DE0B6DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFD07A92-83F2-4828-8891-3C813DE0B6DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFD07A92-83F2-4828-8891-3C813DE0B6DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFD07A92-83F2-4828-8891-3C813DE0B6DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E03CAF0-F65E-4986-9327-C32732217FD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E03CAF0-F65E-4986-9327-C32732217FD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E03CAF0-F65E-4986-9327-C32732217FD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E03CAF0-F65E-4986-9327-C32732217FD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{724BAFE6-3F52-49F7-81BF-BC6755C0EFEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{724BAFE6-3F52-49F7-81BF-BC6755C0EFEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{724BAFE6-3F52-49F7-81BF-BC6755C0EFEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{724BAFE6-3F52-49F7-81BF-BC6755C0EFEC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8E4E2596-8272-4B18-A720-1FBA75D65544} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {286C6D67-6B47-4BBE-A182-054D42C771FC}
+	EndGlobalSection
+EndGlobal
