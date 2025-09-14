@@ -1,17 +1,9 @@
 using ClinicManagement.API.Context;
-using ClinicManagement.Core.Entitys;
 using ClinicManagement.Core.Repository;
 using ClinicManagement.Infrastructure.Repository;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-
-builder.Services.AddControllers();
-builder.Services.AddOpenApi();
 
 var connectionString = builder.Configuration.GetConnectionString("ClinicConnection");
 
@@ -24,18 +16,22 @@ builder.Services.AddScoped<ISpecialtyRepository, SpecialtyRepository>();
 builder.Services.AddScoped<ICareRepository, CareRepository>();
 builder.Services.AddScoped<IPatientRepository, PatientRepository>();
 
+builder.Services.AddControllers();
+// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
+// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     //app.MapOpenApi();
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "ClinicManagement API V1");
-        c.RoutePrefix = string.Empty; // abre direto em http://localhost:5000/
-    });
+    //app.UseSwagger();
+    //app.UseSwaggerUI(c =>
+    //{
+    //    c.SwaggerEndpoint("/swagger/v1/swagger.json", "ClinicManagement API V1");
+    //    c.RoutePrefix = string.Empty; // abre direto em http://localhost:5000/
+    //});
 }
 
 app.UseHttpsRedirection();

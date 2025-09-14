@@ -1,8 +1,6 @@
-﻿using ClinicManagement.API.Context;
-using ClinicManagement.Core.Entitys;
+﻿using ClinicManagement.Core.Entitys;
 using ClinicManagement.Core.Repository;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace ClinicManagement.API.Controllers
 {
