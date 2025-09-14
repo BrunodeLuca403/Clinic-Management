@@ -1,6 +1,6 @@
-@ClinicManagement.API_HostAddress = http://localhost:5205
+# @ClinicManagement.API_HostAddress = https://localhost:7069
 
-# GET {{ClinicManagement.API_HostAddress}}/weatherforecast/
+# GET {{ClinicManagement.API_HostAddress}}v1/api/Care/list-cares
 # Accept: application/json
 
 ###
