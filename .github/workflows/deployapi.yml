@@ -8,17 +8,22 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: GerenciadorClinicas  
     steps:
       - uses: actions/checkout@v3
 
-      - name: Setup .NET Core
+      - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 9.0.x   
+          dotnet-version: 9.0.x  
 
-      - name: Install dependencies
-        run: dotnet restore ClinicManagement.API/ClinicManagement.API.csproj
+      - name: Restore dependencies
+        run: dotnet restore GerenciadorClinicas.sln
 
       - name: Build
-        run: dotnet build ClinicManagement.API/ClinicManagement.API.csproj --configuration Release --no-restore
+        run: dotnet build GerenciadorClinicas.sln --configuration Release --no-restore
 
+      - name: Test
+        run: dotnet test GerenciadorClinicas.sln --no-build --verbosity normal
