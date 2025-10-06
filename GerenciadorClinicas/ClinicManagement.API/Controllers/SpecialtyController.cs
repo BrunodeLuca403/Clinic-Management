@@ -1,8 +1,15 @@
 ﻿using ClinicManagement.API.Context;
+using ClinicManagement.Application.Commands.Service.DeleteService;
+using ClinicManagement.Application.Commands.Speciality.CreateSpeciality;
+using ClinicManagement.Application.Common;
+using ClinicManagement.Application.Query.Service.ListService;
+using ClinicManagement.Application.Query.Speciality.DetailsSpeciality;
+using ClinicManagement.Application.Query.Speciality.ListSpeciality;
 using ClinicManagement.Core.Entitys;
 using ClinicManagement.Core.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace ClinicManagement.API.Controllers
 {
@@ -10,17 +17,16 @@ namespace ClinicManagement.API.Controllers
     [Route("v1/api/Specialty")]
     public class SpecialtyController : ControllerBase
     {
-        private readonly ISpecialtyRepository _specialtyRepository;
-
-        public SpecialtyController(ISpecialtyRepository specialtyRepository)
+        private readonly IMediator _mediator;
+        public SpecialtyController(IMediator mediator)
         {
-            _specialtyRepository = specialtyRepository;
+            _mediator = mediator;
         }
 
         [HttpGet("/list-specialtys")]
-        public async Task<IActionResult> ListSpecialtys()
+        public async Task<IActionResult> ListSpecialtys(ListSpecialityQuery query)
         {
-            var specialtys = _specialtyRepository.GetAllSpecialtiesAsync();
+            var specialtys = await _mediator.DispatchAsync<ListSpecialityQuery, ResultViewModel<List<ListSpecialityQueryHandler>>>(query);
 
             if (specialtys == null)
                 return NotFound();
@@ -29,9 +35,9 @@ namespace ClinicManagement.API.Controllers
         }
 
         [HttpGet("/specialty-{id}")]
-        public async Task<IActionResult> GetByIdSpecialty(Guid id)
+        public async Task<IActionResult> GetByIdSpecialty(DetailsSpecialityQuery query)
         {
-            var specialty = await _specialtyRepository.GetSpecialtyByIdAsync(id);
+            var specialty = await _mediator.DispatchAsync<DetailsSpecialityQuery, ResultViewModel<DetailsSpecialityQueryHandler>>(query);
 
             if (specialty == null)
                 return NotFound();
@@ -40,9 +46,9 @@ namespace ClinicManagement.API.Controllers
         }
 
         [HttpPost("/create-specialty")]
-        public async Task<IActionResult> CreateSpecialty(Specialty specialty)
+        public async Task<IActionResult> CreateSpecialty(CreateSpecialityCommand command)
         {
-            var create = await _specialtyRepository.AddSpecialtyAsync(specialty);
+            var create = await _mediator.DispatchAsync<CreateSpecialityCommand, ResultViewModel<CreateSpecialityCommandHandler>>(command);
 
             if (create == null)
                 return BadRequest();
@@ -50,31 +56,15 @@ namespace ClinicManagement.API.Controllers
             return Ok(create);
         }
 
-        [HttpPut("/update-specialty")]
-        public async Task<IActionResult> UpdateSpecialty(Guid Id ,Specialty specialty)
-        {
-            var id = await _specialtyRepository.GetSpecialtyByIdAsync(Id);
-
-            if (id == null)
-                return NotFound();
-
-            await _specialtyRepository.UpdateSpecialtyAsync(id);
-
-            return Ok(id);
-        }
-
         [HttpDelete("/delete-specialty-{id}")]
-        public async Task<IActionResult> DeleteSpecialty(Guid Id, Specialty specialty)
+        public async Task<IActionResult> DeleteSpecialty(DeleteServiceCommand command)
         {
-            var findSepeciality = await _specialtyRepository.GetSpecialtyByIdAsync(Id);
+            var Sepeciality = await _mediator.DispatchAsync<DeleteServiceCommand, ResultViewModel<DeleteServiceCommandHandler>>(command);
 
-            if (findSepeciality == null)
+            if (Sepeciality == null)
                 return NotFound();
 
-            specialty.SetAsDelete();
-            await _specialtyRepository.UpdateSpecialtyAsync(specialty);
-
-            return Ok(specialty);
+            return Ok(Sepeciality);
         }
     }
 }

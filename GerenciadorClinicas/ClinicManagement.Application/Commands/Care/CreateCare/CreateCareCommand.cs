@@ -1,4 +1,6 @@
-﻿using ClinicManagement.Core.Enum;
+﻿using ClinicManagement.Application.DTO.InputModel;
+using ClinicManagement.Core.Entitys;
+using ClinicManagement.Core.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +20,7 @@ namespace ClinicManagement.Application.Commands.Care.CreateCare
             StartService = startService;
             FinishService = finishService;
             TypeTreatment = typeTreatment;
+            Anexos = [];
         }
 
         public Guid IdPaciente { get; set; }
@@ -27,5 +30,8 @@ namespace ClinicManagement.Application.Commands.Care.CreateCare
         public DateTime StartService { get; set; }
         public DateTime FinishService { get; set; }
         public TypeTreatmentEnum TypeTreatment { get; set; }
+        public List<AnexoDto> Anexos { get; private set; }
+
     }
+
 }

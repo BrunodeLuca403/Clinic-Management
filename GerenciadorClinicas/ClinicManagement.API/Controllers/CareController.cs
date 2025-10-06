@@ -1,6 +1,14 @@
 ﻿using ClinicManagement.API.Context;
+using ClinicManagement.Application.Commands.Care.CreateCare;
+using ClinicManagement.Application.Commands.Care.DeleteCare;
+using ClinicManagement.Application.Commands.Care.UpdateCare;
+using ClinicManagement.Application.Common;
+using ClinicManagement.Application.DTO.ViewModel.Care;
+using ClinicManagement.Application.Query.Care.DetailsCare;
+using ClinicManagement.Application.Query.Care.ListCare;
 using ClinicManagement.Core.Entitys;
 using ClinicManagement.Core.Repository;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
@@ -11,67 +19,67 @@ namespace ClinicManagement.API.Controllers
     [Route("v1/api/Care")]
     public class CareController : ControllerBase
     {
-        private readonly ClinicDbContext _context;
-        private readonly ICareRepository _careRepository;
-        public CareController(ICareRepository careRepository)
+        private readonly IMediator _mediator;
+        public CareController(IMediator mediator)
         {
-            _careRepository = careRepository;
+            _mediator = mediator;
         }
 
         [HttpGet("/list-cares")]
-        public async Task<IActionResult> ListCares()
+        public async Task<ActionResult<List<ListCareDto>>> ListCares([FromQuery]ListCareQuery command)
         {
-            var cares = await _careRepository.GetAllCaresAsync();
+            var cares = await _mediator.DispatchAsync<ListCareQuery, ResultViewModel<List<ListCareDto>>>(command);
+            if (!cares.IsSuccess)
+            {
+                return BadRequest(cares.Error);
+            }
             return Ok(cares);
         }
 
-        [HttpGet("/cares{id}")]
-        public async Task<IActionResult> GetByIdCares(Guid id)
+        [HttpGet("/details-cares")]
+        public async Task<ActionResult<DetailsCareDto>> GetByIdCares([FromQuery] DetailsCareQuery command)
         {
-            var care = await _careRepository.GetCareByIdAsync(id);  
-
-            if (care == null)
+            var cares = await _mediator.DispatchAsync<DetailsCareQuery, ResultViewModel<DetailsCareDto>>(command);
+            if (!cares.IsSuccess)
             {
-                return NotFound();
+                return BadRequest(cares.Error);
             }
-
-            return Ok(care);
+            return Ok(cares);
         }
 
         [HttpPost("/create-care")]
-        public async Task<IActionResult> CreateCare(Care care)
+        public async Task<ActionResult> CreateCare([FromBody] CreateCareCommand command)
         {
-            var create = await _careRepository.AddCareAsync(care);
-
-            if (create == null)
-                return BadRequest();
-
+            var create = await _mediator.DispatchAsync<CreateCareCommand, ResultViewModel<Guid>>(command);
+            if (!create.IsSuccess)
+            {
+                return BadRequest(create.Error);
+            }
             return Ok(create);
+
         }
 
         [HttpPut("/update-care")]
-        public async Task<IActionResult> UpdateCare(Care care)
+        public async Task<ActionResult> UpdateCare([FromBody] UpdateCareCommand command)
         {
-            var id = await _careRepository.GetCareByIdAsync(care.Id);
-            await _careRepository.UpdateCareAsync(care);
+            var delete = await _mediator.DispatchAsync<UpdateCareCommand, ResultViewModel<Guid>>(command);
 
-            if (id == null)
+
+            if (delete == null)
                 return BadRequest();
 
-            return Ok(id);
+            return Ok(delete);
         }
 
         [HttpDelete("/delete-care")]
-        public async Task<IActionResult> DeleteCare(Care care)
+        public async Task<ActionResult> DeleteCare([FromBody] DeleteCareCommand command)
         {
-            var id = await _careRepository.GetCareByIdAsync(care.Id);
-            care.SetAsDeleted();
-            _context.Update(id);
+            var delete = await _mediator.DispatchAsync<DeleteCareCommand, ResultViewModel<Guid>>(command);
+          
+            if (!delete.IsSuccess)
+                return BadRequest(delete.Error);
 
-            if (id == null)
-                return BadRequest();
-
-            return Ok(id);
+            return Ok(delete);
         }
     }
 }

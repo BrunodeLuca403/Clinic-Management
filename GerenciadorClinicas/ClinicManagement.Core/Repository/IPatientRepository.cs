@@ -10,7 +10,7 @@ namespace ClinicManagement.Core.Repository
     public interface IPatientRepository
     {
         Task<IEnumerable<Patient>> GetAllPatientsAsync();
-        Task<Patient> GetPatientByIdAsync(Guid id);
+        Task<Patient> GetPatientByIdAsync(string cpf);
         Task<Patient> AddPatientAsync(Patient patient);
         Task<Patient> UpdatePatientAsync(Patient patient);
     }

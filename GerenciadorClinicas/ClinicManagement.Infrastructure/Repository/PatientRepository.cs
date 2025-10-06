@@ -30,9 +30,9 @@ namespace ClinicManagement.Infrastructure.Repository
             return await _db.Patients.Where(p => !p.IsDelete).AsNoTracking().ToListAsync(); 
         }
 
-        public async Task<Patient> GetPatientByIdAsync(Guid id)
+        public async Task<Patient> GetPatientByIdAsync(string cpf)
         {
-            return await _db.Patients.AsNoTracking().SingleOrDefaultAsync(p => p.Id == id && !p.IsDelete);
+            return await _db.Patients.AsNoTracking().SingleOrDefaultAsync(p => p.CPF == cpf && !p.IsDelete);
         }
 
         public Task<Patient> UpdatePatientAsync(Patient patient)

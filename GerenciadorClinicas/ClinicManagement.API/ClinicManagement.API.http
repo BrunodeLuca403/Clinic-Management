@@ -1,6 +1,6 @@
-# @ClinicManagement.API_HostAddress = https://localhost:7069
+@ClinicManagement.API_HostAddress = https://localhost:7069
 
-# GET {{ClinicManagement.API_HostAddress}}v1/api/Care/list-cares
-# Accept: application/json
+GET {{ClinicManagement.API_HostAddress}}/v1/api/Care/list-cares
+Accept: application/json
 
 ###

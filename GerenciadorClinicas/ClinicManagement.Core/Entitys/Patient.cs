@@ -37,13 +37,14 @@ namespace ClinicManagement.Core.Entitys
         {
             IsDeleted = true;
         }
-        public void UpdatePatient(string email, TypeBlood typeBlood, decimal heightPatient, string weight, Address address)
+        public void UpdatePatient(string email, TypeBlood typeBlood, decimal heightPatient, string weight, Address address, string phone)
         {
             Email = email;
             TypeBlood = typeBlood;
             HeightPatient = heightPatient;
             Weight = weight;
             Address = address;
+            Fone = phone;
         }
     }   
 }

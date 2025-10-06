@@ -27,3 +27,13 @@ jobs:
 
       - name: Test
         run: dotnet test GerenciadorClinicas.sln --no-build --verbosity normal
+
+
+      # Publish
+
+      - name: Publish
+        run: dotnet Publish ./ClinicManagement.API/ClinicManagement.API.csproj --configuration Realise --output ./publish
+
+      #deploy
+
+        

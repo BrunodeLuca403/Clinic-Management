@@ -1,0 +1,18 @@
+﻿using ClinicManagement.Application.DTO.InputModel;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ClinicManagement.Application.DTO.ViewModel.Service
+{
+    public class DetailsServiceDto
+    {
+        public string Name { get;  set; }
+        public string Descripton { get;  set; }
+        public decimal Price { get;  set; }
+        public int Duration { get;  set; }
+        public List<CareDto> Cares { get; set; }
+    }
+}

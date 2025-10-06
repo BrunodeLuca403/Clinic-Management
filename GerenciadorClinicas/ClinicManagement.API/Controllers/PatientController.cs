@@ -1,6 +1,12 @@
-﻿using ClinicManagement.Core.Entitys;
+﻿using ClinicManagement.Application.Commands.Patient.RegistePatient;
+using ClinicManagement.Application.Commands.Patient.UpdatePatient;
+using ClinicManagement.Application.Common;
+using ClinicManagement.Application.Query.Patient.DetailsPatient;
+using ClinicManagement.Application.Query.Patient.ListPatient;
+using ClinicManagement.Core.Entitys;
 using ClinicManagement.Core.Repository;
 using Microsoft.AspNetCore.Mvc;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace ClinicManagement.API.Controllers
 {
@@ -8,16 +14,16 @@ namespace ClinicManagement.API.Controllers
     [Route("v1/api/Patient")]
     public class PatientController : ControllerBase
     {
-        private readonly IPatientRepository _patientRepository;
-        public PatientController( IPatientRepository patientRepository)
+        private readonly IMediator _mediator;
+        public PatientController(IMediator mediator)
         {
-            _patientRepository = patientRepository;
+            _mediator = mediator;
         }
 
         [HttpGet("/list-patients")]
-        public async Task<IActionResult> ListPatients()
+        public async Task<IActionResult> ListPatients(ListPatientQuery query)
         {
-            var patients = await _patientRepository.GetAllPatientsAsync();
+            var patients = await _mediator.DispatchAsync<ListPatientQuery, ResultViewModel<List<ListPatientQueryHandler>>>(query);
 
             if (patients == null)
                 return NotFound();
@@ -26,9 +32,9 @@ namespace ClinicManagement.API.Controllers
         }
 
         [HttpGet("/patient-{id}")]
-        public async Task<IActionResult> GetByIdPatient(Guid id)
+        public async Task<IActionResult> GetByIdPatient(DetailsPatientQuery query)
         {
-            var patient = await _patientRepository.GetPatientByIdAsync(id);
+            var patient = await _mediator.DispatchAsync<DetailsPatientQuery, ResultViewModel<DetailsPatientQueryHandler>>(query);
 
             if (patient == null)
                 return NotFound();
@@ -37,9 +43,9 @@ namespace ClinicManagement.API.Controllers
         }
 
         [HttpPost("/create-patient")]
-        public async Task<IActionResult> CreatePatient(Patient patient)
+        public async Task<IActionResult> CreatePatient(RegisterPatientCommand commad)
         {
-            var create = await _patientRepository.AddPatientAsync(patient); 
+            var create = await _mediator.DispatchAsync<RegisterPatientCommand, ResultViewModel<Guid>>(commad);
 
             if (create == null)
                 return BadRequest();
@@ -48,26 +54,14 @@ namespace ClinicManagement.API.Controllers
         }
 
         [HttpPut("/update-patient")]
-        public async Task<IActionResult> UpdatePatient(Patient patient)
+        public async Task<IActionResult> UpdatePatient(UpdatePatientCommand command)
         {
-            var id = await _patientRepository.UpdatePatientAsync(patient);
+            var id = await _mediator.DispatchAsync<UpdatePatientCommand, ResultViewModel<Guid>>(command);
 
             if (id == null)
                 return NotFound();
 
             return Ok(id);
         }
-
-        [HttpDelete("/delete-patient-{id}")]
-        public async Task<IActionResult> DeletePatient(Patient patiente)
-        {
-            patiente.SetAsDeleted();
-            var patient = await _patientRepository.UpdatePatientAsync(patiente);
-
-            if (patient == null)
-                return NotFound();
-
-            return Ok(patient);
-        }   
     }
 }

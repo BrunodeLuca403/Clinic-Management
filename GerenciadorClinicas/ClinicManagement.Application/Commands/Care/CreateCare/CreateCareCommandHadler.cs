@@ -1,7 +1,5 @@
 ﻿using ClinicManagement.Application.Common;
-using ClinicManagement.Application.DTO;
 using ClinicManagement.Core.Repository;
-using ClinicManagement.Core.Entitys;
 using System;
 using System.Collections.Generic;
 using System.Linq;

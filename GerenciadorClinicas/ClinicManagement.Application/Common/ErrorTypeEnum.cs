@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClinicManagement.Core.Enum
+namespace ClinicManagement.Application.Common
 {
-    public enum ErrorType
+    public enum ErrorTypeEnum
     {
         Failure = 0,    
         Validation = 1,

@@ -1,5 +1,5 @@
 ﻿using ClinicManagement.Application;
-using ClinicManagement.Application.DTO;
+using ClinicManagement.Application.Common;
 using ClinicManagement.Core.Entitys;
 using ClinicManagement.Core.Enum;
 using System.Runtime.CompilerServices;
@@ -21,14 +21,14 @@ namespace ClinicManagement.API.Extensions
         {
             return error.Type switch
             {
-                ErrorType.Validation => Results.BadRequest(error),
-                ErrorType.Conflict => Results.Conflict(error),
-                ErrorType.NotFound => Results.NotFound(error),
-                ErrorType.Unauthorized => Results.Unauthorized(),
+                ErrorTypeEnum.Validation => Results.BadRequest(error),
+                ErrorTypeEnum.Conflict => Results.Conflict(error),
+                ErrorTypeEnum.NotFound => Results.NotFound(error),
+                ErrorTypeEnum.Unauthorized => Results.Unauthorized(),
                 _ => Results.Problem(
                     statusCode: 500,
                     title: "Server Faliure",
-                    type: Enum.GetName(typeof(ErrorType), error.Type),
+                    type: Enum.GetName(typeof(ErrorTypeEnum), error.Type),
                     extensions: new Dictionary<string, object?>
                     {
                         { "errors", new [] { error } },

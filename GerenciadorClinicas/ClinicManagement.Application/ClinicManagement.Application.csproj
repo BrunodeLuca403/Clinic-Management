@@ -7,26 +7,22 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\Care\DeleteCare\" />
-    <Folder Include="Commands\Care\UpdateCare\" />
-    <Folder Include="Commands\Medic\" />
-    <Folder Include="Commands\Speciality\" />
-    <Folder Include="Commands\Service\" />
-    <Folder Include="Commands\Patient\" />
-    <Folder Include="DTO\ViewModel\Care\" />
-    <Folder Include="DTO\ViewModel\Medic\" />
-    <Folder Include="DTO\ViewModel\Patient\" />
-    <Folder Include="DTO\ViewModel\Service\" />
-    <Folder Include="Query\" />
+    <None Remove="Commands\Patient\UpdatePatient\UpdatePatientCommand.cs~RF7a6197.TMP" />
+    <None Remove="Commands\Speciality\CreateSpeciality\CreateSpecialityCommand.cs~RF62b4eb.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Validators\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.8" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ClinicManagement.Core\ClinicManagement.Core.csproj" />
+    <ProjectReference Include="..\ClinicManagement.Infrastructure\ClinicManagement.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
