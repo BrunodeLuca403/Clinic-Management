@@ -1,0 +1,6 @@
+﻿namespace ClinicManagement.API
+{
+    public class docker_compose
+    {
+    }
+}

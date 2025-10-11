@@ -11,7 +11,7 @@ namespace ClinicManagement.Infrastructure.Caching
     {
         private readonly IDistributedCache _cache;
         private readonly DistributedCacheEntryOptions _distributedCacheEntryOptions;
-        public CachingService(IDistributedCache cache, DistributedCacheEntryOptions distributedCacheEntryOptions)
+        public CachingService(IDistributedCache cache)
         {
             _cache = cache;
             _distributedCacheEntryOptions = new DistributedCacheEntryOptions

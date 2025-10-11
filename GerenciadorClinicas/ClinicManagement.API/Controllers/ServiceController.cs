@@ -1,15 +1,9 @@
 ﻿using ClinicManagement.Application.Commands.Service.CreateService;
 using ClinicManagement.Application.Commands.Service.DeleteService;
 using ClinicManagement.Application.Common;
-using ClinicManagement.Application.Query.Patient.ListPatient;
 using ClinicManagement.Application.Query.Service.DetailsService;
 using ClinicManagement.Application.Query.Service.ListService;
-using ClinicManagement.Core.Entitys;
-using ClinicManagement.Core.Repository;
-using ClinicManagement.Infrastructure.Repository;
 using Microsoft.AspNetCore.Mvc;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace ClinicManagement.API.Controllers
 {

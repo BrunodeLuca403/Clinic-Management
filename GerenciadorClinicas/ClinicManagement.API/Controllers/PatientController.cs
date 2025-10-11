@@ -3,10 +3,7 @@ using ClinicManagement.Application.Commands.Patient.UpdatePatient;
 using ClinicManagement.Application.Common;
 using ClinicManagement.Application.Query.Patient.DetailsPatient;
 using ClinicManagement.Application.Query.Patient.ListPatient;
-using ClinicManagement.Core.Entitys;
-using ClinicManagement.Core.Repository;
 using Microsoft.AspNetCore.Mvc;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace ClinicManagement.API.Controllers
 {

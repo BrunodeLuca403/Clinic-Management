@@ -10,12 +10,7 @@ namespace ClinicManagement.Application.DTO.ViewModel.Speciality
 {
     public class DetailsSpecialityDto
     {
-        public DetailsSpecialityDto(Guid id, string codeSpecialty, string nameSpeacialty)
-        {
-            Id = id;
-            CodeSpecialty = codeSpecialty;
-            NameSpeacialty = nameSpeacialty;
-        }
+   
 
         public Guid Id { get; set; }
         public string CodeSpecialty { get;  set; }

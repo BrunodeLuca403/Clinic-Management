@@ -1,14 +1,9 @@
-﻿using ClinicManagement.API.Context;
-using ClinicManagement.Application.Commands.Medic.RegisterMedic;
+﻿using ClinicManagement.Application.Commands.Medic.RegisterMedic;
 using ClinicManagement.Application.Commands.Medic.UpdateMedic;
 using ClinicManagement.Application.Common;
 using ClinicManagement.Application.Query.Medic.DetailsMedic;
 using ClinicManagement.Application.Query.Medic.ListMedic;
-using ClinicManagement.Core.Entitys;
-using ClinicManagement.Core.Repository;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace ClinicManagement.API.Controllers
 {
@@ -24,7 +19,7 @@ namespace ClinicManagement.API.Controllers
         }
 
         [HttpGet("/list-medics")]
-        public async Task<IActionResult> ListMedics(ListMedicQuery query)
+        public async Task<IActionResult> ListMedics([FromQuery]ListMedicQuery query)
         {
             var medics = await _mediator.DispatchAsync<ListMedicQuery, List<ResultViewModel<ListMedicQueryHandler>>>(query);
 
