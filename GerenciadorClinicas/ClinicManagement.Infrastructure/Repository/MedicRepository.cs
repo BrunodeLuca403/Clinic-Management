@@ -35,6 +35,11 @@ namespace ClinicManagement.Infrastructure.Repository
 
         }
 
+        public async Task<bool> ExistsByCrmAsync(string crm)
+        {
+            return await _db.Medics.AnyAsync(m => m.CRM == crm);
+        }
+
         public async Task<IEnumerable<Medic>> GetAllMedicsAsync()
         {
             return await _db.Medics.ToListAsync();  

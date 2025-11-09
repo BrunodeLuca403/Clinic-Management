@@ -22,6 +22,17 @@ namespace ClinicManagement.Application.Commands.Medic.RegisterMedic
         {
             try
             {
+                var findMedic = await _medicRrepository.ExistsByCrmAsync(request.CRM);
+                
+                if(findMedic == true){  
+                    return ResultViewModel<Guid>.Failure(
+                        Error.Conflict(
+                            "ClinicManagement.Application.Commands.Medic.CreateMedic",
+                            $"Já existe um médico cadastrado com o CRM {request.CRM}."
+                        )
+                    );
+                }
+
                 var medic = new Core.Entitys.Medic(request.Name, request.LastName, request.Bithdate, request.PhoneNumber, request.Email, request.CPF, request.TypeBlood, request.CRM, request.Advice, request.Uf);
                 await _medicRrepository.AddMedicAsync(medic);
                 return ResultViewModel<Guid>.Success(medic.Id);

@@ -19,24 +19,24 @@ namespace ClinicManagement.Infrastructure.Repository
             _db = db;
         }
 
-        public async Task<Service> AddServiceAsync(Service service)
+        public async Task<ClinicManagement.Core.Entitys.Service> AddServiceAsync(ClinicManagement.Core.Entitys.Service service)
         {
             var create = _db.AddAsync(service);
             await _db.SaveChangesAsync();
             return service;
         }
 
-        public async Task<IEnumerable<Service>> GetAllServicesAsync()
+        public async Task<IEnumerable<ClinicManagement.Core.Entitys.Service>> GetAllServicesAsync()
         {
             return await _db.Services.AsNoTracking().Where(p => !p.IsDeleted).ToListAsync();
         }
 
-        public async Task<Service> GetServiceByIdAsync(Guid id)
+        public async Task<ClinicManagement.Core.Entitys.Service> GetServiceByIdAsync(Guid id)
         {
             return await _db.Services.AsNoTracking().SingleOrDefaultAsync(s => s.Id == id && !s.IsDeleted);
         }
 
-        public async Task<Service> UpdateServiceAsync(Service service)
+        public async Task<ClinicManagement.Core.Entitys.Service> UpdateServiceAsync(ClinicManagement.Core.Entitys.Service service)
         {
             var Find = await _db.Services.AsNoTracking().SingleOrDefaultAsync(s => s.Id == service.Id && !s.IsDeleted);
             var update = _db.Services.Update(Find);

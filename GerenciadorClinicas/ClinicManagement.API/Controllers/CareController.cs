@@ -1,17 +1,11 @@
-﻿using ClinicManagement.API.Context;
-using ClinicManagement.Application.Commands.Care.CreateCare;
+﻿using ClinicManagement.Application.Commands.Care.CreateCare;
 using ClinicManagement.Application.Commands.Care.DeleteCare;
 using ClinicManagement.Application.Commands.Care.UpdateCare;
 using ClinicManagement.Application.Common;
 using ClinicManagement.Application.DTO.ViewModel.Care;
 using ClinicManagement.Application.Query.Care.DetailsCare;
 using ClinicManagement.Application.Query.Care.ListCare;
-using ClinicManagement.Core.Entitys;
-using ClinicManagement.Core.Repository;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
 
 namespace ClinicManagement.API.Controllers
 {

@@ -21,6 +21,11 @@ namespace ClinicManagement.Application.Commands.Patient.RegistePatient
         {
             try
             {
+                var existing = await _patientRepository.GetPatientByIdAsync(command.CPF);
+                if (existing != null)
+                    return ResultViewModel<Guid>.Failure(Error.Failure("ClinicManagement.Application.Commands.Patient.RegistePatient", "Paciente já existe"));
+
+
                 var medic = new Core.Entitys.Patient(command.Name, command.LastName, command.Bithdate, command.Fone, command.Email, command.CPF ,command.TypeBlood, command.HeightPatient, command.Weight);
                 await _patientRepository.AddPatientAsync(medic);
                 return ResultViewModel<Guid>.Success(medic.Id);

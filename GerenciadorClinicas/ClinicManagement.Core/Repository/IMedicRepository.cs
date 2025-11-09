@@ -14,5 +14,7 @@ namespace ClinicManagement.Core.Repository
         Task<Medic> AddMedicAsync(Medic medic);
         Task<Medic> UpdateMedicAsync(Medic medic);
         Task DeleteMedicAsync(Guid id);
+        Task<bool> ExistsByCrmAsync(string crm);
+
     }
 }

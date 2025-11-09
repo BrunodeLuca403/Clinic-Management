@@ -12,5 +12,6 @@ namespace ClinicManagement.Core.Repository
         Task<IEnumerable<Service>> GetAllServicesAsync();
         Task<Service> GetServiceByIdAsync(Guid id);
         Task<Service> AddServiceAsync(Service service);
-        Task<Service> UpdateServiceAsync(Service service);    }
+        Task<Service> UpdateServiceAsync(Service service);    
+    }
 }

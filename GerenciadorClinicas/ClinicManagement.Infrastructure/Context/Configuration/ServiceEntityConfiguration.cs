@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace ClinicManagement.Infrastructure.Context.Configuration
 {
-    public class ServiceEntityConfiguration : IEntityTypeConfiguration<Service>
+    public class ServiceEntityConfiguration : IEntityTypeConfiguration<ClinicManagement.Core.Entitys.Service>
     {
-        public void Configure(EntityTypeBuilder<Service> builder)
+        public void Configure(EntityTypeBuilder<ClinicManagement.Core.Entitys.Service> builder)
         {
             builder.HasKey(x => x.Id);
 
