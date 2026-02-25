@@ -21,7 +21,7 @@ O objetivo é fornecer uma base sólida para aplicações modernas, integrando *
 - *(Em breve)* Integração com **Grafana** e **Prometheus** para métricas e observabilidade
 - *(Em breve)* **Autenticação e Autorização (JWT + Perfis de Acesso)**
 -  Integração com **OpenAI API**
-- *(Em breve)* Testes automatizados com **xUnit / NUnit**
+- Testes automatizados com **xUnit / NUnit**
 
 ---
 
