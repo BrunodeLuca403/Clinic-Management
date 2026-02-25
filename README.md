@@ -17,11 +17,10 @@ O objetivo é fornecer uma base sólida para aplicações modernas, integrando *
 - **Caching com Redis**
 - **Docker** (containerização)
 - **CI/CD (GitHub Actions ou Azure DevOps)**
-- *(Em breve)* **Integração com Google Calendar** (confirmação de agendamento)
-- *(Em breve)* **Background Services**
+- **Background Services**
 - *(Em breve)* Integração com **Grafana** e **Prometheus** para métricas e observabilidade
 - *(Em breve)* **Autenticação e Autorização (JWT + Perfis de Acesso)**
-- *(Em breve)* Integração com **OpenAI API**
+-  Integração com **OpenAI API**
 - *(Em breve)* Testes automatizados com **xUnit / NUnit**
 
 ---
